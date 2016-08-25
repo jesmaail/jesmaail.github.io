@@ -40,14 +40,113 @@
 					<div class="inner">
 						<h2>APIs and the Rest Architecture</h2>
 						<p>
-							Summary or subtitle to go with the title
+							REST, or <b>Re</b>presentational <b>S</b>tate <b>T</b>ransfer is resource based and follows six constraints:
+							<ol>
+								<li>Uniform interface</li>
+								<li>Stateless</li>
+								<li>Client-Server</li>
+								<li>Cacheable</li>
+								<li>Layered system</li>
+								<li>Code on demand</li>
+							</ol>
 						</p>
-						</div>
+					</div>
 				</section>
 
 				<section class="wrapper fade-up">
 					<div class="inner">
-						The actual writing content goes here, maybe split this up into different sections using the section tag.
+						<h3>Representations</h3>
+						<ul>
+							<li>Transferred between client and server.</li>
+							<li>Typically JSON or XML.</li>
+							<li>Example: <ul>
+									<li>Resource: Person (Bob).</li>
+									<li>Service: Contact info (GET).</li>
+									<li>Representation: Name, Address, phone number (JSON/XML).</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<hr/>
+				</section>
+
+				<section class="wrapper fade-up">
+					<div class="inner">
+						<h3>1. Uniform Interface</h3>
+						<ul>
+							<li>Defines interface between client and server.</li>
+							<li>Means:
+								<ul>
+									<li>HTTP verbs (GET, PUT POST, DELETE).</li>
+									<li>URIs (Resource name).</li>
+									<li>HTTP response (status, body).</li>
+								</ul>
+						</ul>
+					</div>
+					<hr/>
+				</section>
+
+				<section class="wrapper fade-up">
+					<div class="inner">
+						<h3>2. Stateless</h3>
+						<ul>
+							<li>Server contains no client state.</li>
+							<li>Each request contains enough context to process message.</li>
+							<li>Any sessions state is held on the client.</li>
+						</ul>
+					</div>
+					<hr/>
+				</section>	
+
+				<section class="wrapper fade-up">
+					<div class="inner">
+						<h3>3. Client-Server</h3>
+						<ul>
+							<li>Assume a disconnected system.</li>
+							<li>Seperation of concerns</li>
+							<li>Uniform interface is line between the two.</li>
+						</ul>
+					</div>
+					<hr/>
+				</section>
+
+				<section class="wrapper fade-up">
+					<div class="inner">
+						<h3>4. Cacheable</h3>
+						<ul>
+							<li>Server responses (representations) are cacheable
+							<ul>
+								<li>Implicitly</li>
+								<li>Explicitly</li>
+								<li>Negotiated</li>
+							</li>
+						</ul>
+					</div>
+					<hr/>
+				</section>	
+
+				<section class="wrapper fade-up">
+					<div class="inner">
+						<h3>5. Layered system</h3>
+						<ul>
+							<li>Client can't assume direct connection to server.</li>
+							<li>Software or hardware intermediaries between client and server.</li>
+							<li>Improves scalability.</li>
+						</ul>
+					</div>
+					<hr/>
+				</section>	
+
+				<section class="wrapper fade-up">
+					<div class="inner">
+						<h3>6. Code on demand</h3>
+						<ul>
+							<li>Server can temporarily extend client.</li>
+							<li>Transfer logic to client.</li>
+							<li>Client executes logic.</li>
+							<li>Example: <i> Java applets, JavaScript.</i></li>
+							<li>The only optional constraint!</li>
+						</ul>
 					</div>
 					<hr/>
 				</section>	
