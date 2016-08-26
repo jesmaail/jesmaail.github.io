@@ -13,6 +13,13 @@
 		<link rel="stylesheet" href="../assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+
+		<!-- Syntax Highligher - EnlighterJS -->
+		<link rel="stylesheet" type="text/css" href="../assets/css/EnlighterJS.min.css"/>
+		<script type="text/javascript" src="../assets/js/MooTools-Core-1.6.0.js"></script>
+		<script type="text/javascript" src="../assets/js/EnlighterJS.min.js"></script>
+
+		<meta name="EnlighterJS" content="Advanced javascript based syntax highlighting" data-indent="4" data-selector-block="pre" data-selector-inline="code" data-language="C#" />
 	</head>
 	<body>
 
@@ -113,12 +120,13 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 public class Band
 {
 	public List&lt;Member&gt; BandMembers { get; set; }
-
 	public List&lt;Gig&gt; Gigs { get; set; }
 }
-
+					</pre>
+					<pre>
 
 using System.Xml.Serialization;
+
 [XmlRoot("BandMember")]
 public class BandMember
 {
@@ -127,8 +135,10 @@ public class BandMember
 	public string Instrument { get; set; }
 	public string Availability { get; set; }
 }
+					</pre>
+					<pre>
+using System.Xml.Serialization;
 
-using System.Xml.Serialization
 [XmlRoot("Gig")]
 public class Gig
 {
@@ -138,7 +148,6 @@ public class Gig
 	public string Date { get; set; }
 }
 					</pre>
-					<i>Worth a mention: I will be improving this page with syntax highlighting!</i>
 					</div>
 					<hr/>
 				</section>
