@@ -1,0 +1,192 @@
+<!DOCTYPE HTML>
+<!--
+	Read Only by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Joseph Esmaail</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="../assets/content/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="../assets/content/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="../assets/content/css/ie8.css" /><![endif]-->
+
+        <!-- Syntax Highligher - EnlighterJS -->
+		<link rel="stylesheet" type="text/css" href="../assets/enlighterjs/EnlighterJS.min.css"/>
+		<script type="text/javascript" src="../assets/enlighterjs/MooTools-Core-1.6.0.js"></script>
+		<script type="text/javascript" src="../assets/enlighterjs/EnlighterJS.min.js"></script>
+
+		<meta name="EnlighterJS" content="Advanced javascript based syntax highlighting" data-indent="4" data-selector-block="pre" data-selector-inline="code" data-language="C#" />
+	</head>
+	<body>
+
+		<!-- Header -->
+			<section id="header">
+				<header>
+					<span class="image avatar">
+						<a href="index.html">
+						<img src="../assets/images/avatar.png" alt="Me, but a bit less detailed" />
+						</span>
+					<h1 id="logo"><a href="index.html">Joseph Esmaail</a></h1>
+					<p>Software Developer</p>
+				</header>
+				<nav id="nav">
+					<ul>
+						<li><a href="../blog.html" class="active">Blog</a></li>
+						<li><a href="../content.html#one">Summary</a></li>
+						<li><a href="../content.html#two">Experience</a></li>
+						<li><a href="../content.html#three">Skills & Projects</a></li>
+						<li><a href="../content.html#four">Interests/Other</a></li>	
+					</ul>
+				</nav>
+				<footer>
+					<ul class="icons">
+						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+						<li><a href="#" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+					</ul>
+				</footer>
+			</section>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- One -->
+							<section>
+								<div class="container">
+									<header class="major">
+										<h2>Mapping XML in a .Net Core Web API</h2>										
+									</header>
+									<p>
+										How to use XML and XML attributes in a ASP.Net Core Web API.
+                                        <br/>
+                                        A good introduction for developing a web API in ASP.Net Core can be found 
+                                        <a href="https://docs.asp.net/en/latest/tutorials/first-web-api.html">here</a>,
+                                        which uses a trivial model class, and does not cover the extra steps required to make it entirely compatible with XML.
+									</p>
+								</div>
+							</section>
+
+							<section>
+								<div class="container">
+                                    <h3>First Steps</h3>
+						            Add the following code to the <i>ConfigureServices</i> method in the <i>Startup.cs</i> file in your project.
+						            <br/>
+						            <pre>
+services.AddMvc(config =>
+{
+	config.RespectBrowserAcceptHeader = true;
+	config.InputFormatters.Add(new XmlSerializerInputFormatter());
+	config.OutputFormatters.Add(new XmlDataContractSerializerOutputFormatter());
+});
+                                    </pre>
+                                    You'll also want the following using:<br/>
+                                    <pre>
+using Microsoft.AspNetCore.Mvc.Formatters;
+						            </pre>
+						            The API can now handle XML as well as JSON formats.
+
+                                    <hr/>
+
+                                    <h3>XML Attributes and ASP.Net Core</h3>
+					                That will work for straightforward XML without attributes, 
+                                    however we will need to add a few things to our model class(es) if we want to use attributes.
+                                    <br/><br/>
+					                The best way to explain this is to use an example,
+					                we want to have the API be able to accept an XML document that looks like:
+					                <pre>
+&lt;Band&gt;
+	&lt;BandMembers&gt;
+		&lt;BandMember name="Phil"&gt;
+			&lt;Instrument&gt;Vocals&lt;/Instrument&gt;
+			&lt;Availability&gt;Saturdays&lt;\Availability&gt;
+		&lt;/BandMember&gt;
+		&lt;BandMember name="Dave"&gt;
+			&lt;Instrument&gt;Guitar&lt;/Instrument&gt;
+			&lt;Availability&gt;Weekends&lt;\Availability&gt;
+		&lt;/BandMember&gt;
+		&lt;BandMember name="James"&gt;
+			&lt;Instrument&gt;Bass&lt;/Instrument&gt;
+			&lt;Availability&gt;Everyday&lt;\Availability&gt;
+		&lt;/BandMember&gt;
+		&lt;BandMember name="Chris"&gt;
+			&lt;Instrument&gt;Drums&lt;/Instrument&gt;
+			&lt;Availability&gt;Weekends&lt;\Availability&gt;
+		&lt;/BandMember&gt;
+	&lt;/BandMembers&gt;
+	&lt;Gigs&gt;
+		&lt;Gig venue="Motorpoint Arena" date="01/01/2010"&gt;
+		&lt;Gig venue="Brangwyn Hall" date="10/01/2010"&gt;
+	&lt;/Gigs&gt;
+&lt;/Band&gt;
+					                </pre>
+                                    <br/>
+					                So the classes we want for our model should look like:
+					                <pre>
+public class Band
+{
+	public List&lt;Member&gt; BandMembers { get; set; }
+	public List&lt;Gig&gt; Gigs { get; set; }
+}
+					                </pre>
+					                <pre>
+
+using System.Xml.Serialization;
+
+[XmlRoot("BandMember")]
+public class BandMember
+{
+	[XmlAttribute(AttributeName = "name")]
+	public string Name { get; set; }
+	public string Instrument { get; set; }
+	public string Availability { get; set; }
+}
+					                </pre>
+					                <pre>
+using System.Xml.Serialization;
+
+[XmlRoot("Gig")]
+public class Gig
+{
+	[XmlAttribute(AttributeName = "venue")]
+	public string Venue { get; set; }
+	[XmlAttrivute(AttributeName = "date")]
+	public string Date { get; set; }
+}
+					                </pre>
+                                    
+                                    <hr/>
+                                    <p><b><i> Originally Written: 26/08/2016 </i></b></p>
+                                    <hr/>
+								</div>
+                                
+							</section>
+					</div>
+
+				<!-- Footer -->
+					<section id="footer">
+						<div class="container">
+							<ul class="copyright">
+								<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../assets/content/js/jquery.min.js"></script>
+			<script src="../assets/content/js/jquery.scrollzer.min.js"></script>
+			<script src="../assets/content/js/jquery.scrolly.min.js"></script>
+			<script src="../assets/content/js/skel.min.js"></script>
+			<script src="../assets/content/js/util.js"></script>
+			<!--[if lte IE 8]><script src="../assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../assets/content/js/main.js"></script>
+
+	</body>
+</html>
