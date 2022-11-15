@@ -1,5 +1,7 @@
 # Personal page
-Making use of the [Modern Resume Theme by sproogen](https://github.com/sproogen/modern-resume-theme).
+Making use of the [Modern Resume Theme by sproogen](https://github.com/sproogen/modern-resume-theme), 
+with some overriding of page layout done with `-override.html` files in this repo as the source
+is being provided as a remote theme.
 
 
 ## Running Locally
