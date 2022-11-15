@@ -1,0 +1,10 @@
+---
+# Front matter comment to ensure Jekyll properly reads file.
+---
+
+@import 'modern-resume-theme';
+@import url(http://fonts.googleapis.com/css?family=Fira+Code);
+
+body, p, h1, h2, h3 {
+    font-family: Fira Code, sans-serif;
+}
