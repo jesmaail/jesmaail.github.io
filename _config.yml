@@ -1,6 +1,7 @@
 # Site
 repository: jesmaail.jesmaail.github.io
 favicon: assets/images/favicon.ico
+baseurl: #TODO
 
 # Content configuration version
 version: 2
@@ -107,5 +108,12 @@ sass:
   sass_dir: _sass
   style: compressed
 
+include:
+  - _pages
+
+exclude:
+  - README.md
+  - LICENSE.md
+  
 plugins:
  - jekyll-seo-tag

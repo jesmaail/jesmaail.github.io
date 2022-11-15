@@ -8,3 +8,21 @@
 body, p, h1, h2, h3 {
     font-family: Fira Code, sans-serif;
 }
+
+/* Horizontal scrolling navbar. From: https://iamsteve.me/blog/horizontal-scrolling-responsive-menu */
+.scroll {
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar; 
+    font-weight: 300;
+    font-size: 2rem;
+}
+  
+.scroll::-webkit-scrollbar {
+    display: none; 
+}
+
+.dark a {
+    color: rgb(227, 142, 24);
+}
