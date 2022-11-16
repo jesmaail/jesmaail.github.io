@@ -1,7 +1,11 @@
 # Personal page
-Making use of the [Modern Resume Theme by sproogen](https://github.com/sproogen/modern-resume-theme), 
-with some overriding of page layout done with `-override.html` files in this repo as the source
+Making use of both the [Modern Resume Theme by @sproogen](https://github.com/sproogen/modern-resume-theme) and [Gradfolio Theme by @jitinnair1](https://github.com/jitinnair1/gradfolio).
+
+Both have been hacked together to make my own Franken-Theme. 
+- Some overriding of page layout done with `-override.html` files in this repo as the source
 is being provided as a remote theme.
+- Add Navbar so more than just the single page.
+- Merge the projects view from both and get info from `.md` files under `/projects`.
 
 
 ## Running Locally
